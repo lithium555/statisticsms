@@ -11,18 +11,19 @@ import (
 type StructgRPC struct {
 }
 
-func (s *StructgRPC) GetStatistics(ctx context.Context, data *TaskMessage, summ *Counter)(*TaskMessage, *Counter, error){
-	log.Println("function GetStatistics receive message")
-	currentTime := time.Now()
-	val := *summ
-	val.Revenue = val.Revenue + 1
-	return &TaskMessage{
-		Date: time.Now().Format("2006-01-02"),
-		Time: currentTime.Format(time.RFC3339),
-		EventId: rand.Int63(),
-		PartnerId: rand.Int63(),
-		},
-		&Counter{
-			Revenue: val.Revenue,
-		}, nil
+
+func (s *StructgRPC) Report(ctx context.Context, data *TaskMessage,)(*Empty, error){
+	data.Date = time.Now().Unix()
+	data.Time.Seconds = int32(time.Now().UTC().Second())
+	data.Time.Nanos = time.Now().UTC().UnixNano()
+	data.PartnerId = rand.Int63()
+	var e Empty
+	return &e, nil
+}
+
+func (s *StructgRPC) GetStats(ctx context.Context, st *StatsReq)(*Counter, error){
+	var c *Counter
+	c.Revenue = st.PartnerId + 1 // херня какая-то ,счытчик доолжен быть вообще внешний
+	log.Println("function GetStat receive message")
+	return c, nil
 }
