@@ -28,3 +28,5 @@ func (s *StructgRPC) GetStats(ctx context.Context, st *StatsReq)(*Counter, error
 	log.Println("function GetStat receive message")
 	return c, nil
 }
+
+//go:generate protoc --go_out=plugins=grpc:.  data.proto
