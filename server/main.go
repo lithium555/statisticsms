@@ -9,7 +9,6 @@ import (
 )
 
 func main(){
-	// create a listener on TCP port 7777
 	lis, err := net.Listen("tcp", "127.0.0.1:8080")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

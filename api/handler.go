@@ -23,6 +23,7 @@ func (s *StructgRPC) Report(ctx context.Context, data *TaskMessage,)(*Empty, err
 
 func (s *StructgRPC) GetStats(ctx context.Context, st *StatsReq)(*Counter, error){
 	var c *Counter
+
 	c.Revenue = st.PartnerId + 1 // херня какая-то ,счытчик доолжен быть вообще внешний
 	log.Println("function GetStat receive message")
 	return c, nil
