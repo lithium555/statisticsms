@@ -5,7 +5,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	"statisticms/api"
+	"statisticsms/api"
 )
 
 func main(){
